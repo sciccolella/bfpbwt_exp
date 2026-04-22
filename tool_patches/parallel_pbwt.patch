@@ -1,0 +1,41 @@
+diff --git a/pbwt_exp.hpp b/pbwt_exp.hpp
+index 62d869a..5e58aed 100644
+--- a/pbwt_exp.hpp
++++ b/pbwt_exp.hpp
+@@ -2,10 +2,12 @@
+ #include <cstddef>
+ #include <iostream>
+ #include <fstream>
++#include <iterator>
+ #include <sstream>
+ #include <vector>
+ #include <numeric>
+ #include <thread>
++#include <syncstream>
+ #include <mutex>
+ #include <algorithm>
+ 
+@@ -550,13 +552,10 @@ a_d_arrays_at_pos process_matrix_sequentially(const hap_map_t& hap_map, const si
+     }
+ 
+     for (size_t k = start; k < effective_stop; ++k) {
+-        if constexpr (REPORT_MATCHES) algorithm_4_ReportSetMaximalMatches(hap_map[k], N, k, a, d, report);
+         algorithm_2_BuildPrefixAndDivergenceArrays(hap_map[k], k, a, b, d, e);
+-    }
+-    if constexpr (REPORT_MATCHES) {
+-        if (effective_stop == N) {
+-            algorithm_4_ReportSetMaximalMatches(hap_map[N-1], N, N, a, d, report); // Special case
+-        }
++      if(REPORT_MATCHES){
++        std::osyncstream(std::cout) << a[M - 1] + d[M - 1] << "\n";
++      }
+     }
+ 
+     // Return a and d at stop position
+@@ -826,4 +825,4 @@ std::vector<matches_t> report_matches_in_parallel(const hap_map_t& hap_map, cons
+     return matches;
+ }
+ 
+-#endif /* __PBWT_EXP_HPP__ */
+\ No newline at end of file
++#endif /* __PBWT_EXP_HPP__ */

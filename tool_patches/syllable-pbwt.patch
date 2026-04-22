@@ -1,0 +1,12 @@
+diff --git a/server.cpp b/server.cpp
+index 03038b3..f030c8f 100644
+--- a/server.cpp
++++ b/server.cpp
+@@ -78,6 +78,7 @@ void listen() {
+ 			return;
+ 		}
+ 		cout << "Precomputation complete" << endl;
++    exit(0);
+ 
+ 		if (gen_map_file_set) {
+ 			cout << "Loading genetic map from " << gen_map_file << endl;
