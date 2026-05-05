@@ -1,4 +1,4 @@
-Experiment replication for manuscript
+Experiment replication for manuscript **"Sampled and Parallel Positional Burrows-Wheeler Transform"**
 
 
 ## Requirements:
